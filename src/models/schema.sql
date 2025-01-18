@@ -1,0 +1,15 @@
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE seats (
+  id SERIAL PRIMARY KEY,
+  seat_number INTEGER NOT NULL,
+  row_number INTEGER NOT NULL,
+  is_booked BOOLEAN DEFAULT FALSE,
+  booked_by INTEGER REFERENCES users(id),
+  booking_time TIMESTAMP
+);
